@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Product Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Buy Our Digital Product</h1>
+        <p>Product Description: Download the full resolution photo after purchase!</p>
+
+        <!-- Correct relative path for the image -->
+        <img src="product_img.jpg" alt="Digital Product Image" width="250" height="200" class="product-image">
+
+        <h2>Price: $1.00</h2>
+
+        <!-- PayPal Button Container -->
+        <div id="paypal-button-container"></div>
+        <p id="result-message"></p>
+    </div>
+
+    <!-- Initialize the PayPal SDK script --> 
+    <script src= "https://www.paypal.com/sdk/js?client-id=Ae0qO02vNq2h53kXr6dBQGNXGWvg7aOUyKOtCmMjZXbkxrANmAbEmeTi2RVbObraKMG07v1_kQgmDJcN&currency=USD" data-sdk-integration-source="developer-studio"></script>
+    
+    <!-- PayPal Button Initialization Script -->
+    <script>
+        // Ensure PayPal Buttons are rendered when the SDK is loaded
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '1.00' // Price of the product
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Display success message after successful payment
+                    document.getElementById('result-message').innerHTML = 'Thank you, ' + details.payer.name.given_name + '! Payment successful.';
+                });
+            },
+            onCancel: function(data) {
+                // Handle cancellation
+                document.getElementById('result-message').innerHTML = 'Payment was cancelled.';
+            },
+            onError: function(err) {
+                // Handle errors
+                document.getElementById('result-message').innerHTML = 'An error occurred. Please try again.';
+            }
+        }).render('#paypal-button-container'); // Render the button in the container
+    </script>
+</body>
+
+</html>

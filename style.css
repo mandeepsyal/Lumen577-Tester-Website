@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0ddec;
+    margin: 0;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    width: 50%;          /* Set the width to 70% of the parent */
+    margin: 0 auto;
+    background-color: #9acae0;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(106, 18, 164, 0.1);
+}
+.product-image {
+    width: 100%;
+    
+    margin: 20px 0;
+}
+h1 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+h2 {
+    font-size: 15px;
+    color: #000000;
+}
+
+p {
+    font-size: 15px;
+    color: #000000;
+}
+
+#paypal-button-container {
+    margin-top: 20px; 
+}
